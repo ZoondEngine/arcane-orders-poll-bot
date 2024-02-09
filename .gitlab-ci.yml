@@ -1,0 +1,10 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  script:
+    - docker build -t auth-server-image ci/docker/
+    - docker run -d -p 81:8000 --name auth-server auth-server-image
+  tags:
+    - test-runner 
