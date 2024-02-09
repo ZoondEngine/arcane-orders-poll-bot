@@ -92,14 +92,8 @@ final class SubscriptionScene implements TelegramSceneInterface
      */
     public static function isValidSubscription(string $text): bool
     {
-        foreach(self::aggregateAvailableSubscriptions(self::$user) as $subscription)
-        {
-            Log::error($subscription);
-
-            if($subscription === $text)
-            {
-                return true;
-            }
+        if (in_array($text, self::aggregateAvailableSubscriptions(self::$user), true)) {
+            return true;
         }
 
         return false;
